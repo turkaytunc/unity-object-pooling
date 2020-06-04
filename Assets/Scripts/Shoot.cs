@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject shootingPoint;
+
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, shootingPoint.transform.position, Quaternion.identity);
+        }
         
     }
 }
