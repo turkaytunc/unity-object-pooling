@@ -37,5 +37,15 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    public GameObject GetObjectFromPool()
+    {
+        GameObject poolItem = objectPool.Dequeue();
+        poolItem.SetActive(true);
+
+        return poolItem;
+    }
+
+
+
 
 }
