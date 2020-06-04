@@ -38,9 +38,13 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-
     public GameObject GetObjectFromPool()
     {
+        if (objectPool.Count <= 0)
+        {
+            InstantiatePoolItem();
+        }
+
         GameObject poolItem = objectPool.Dequeue();
         poolItem.SetActive(true);
 
