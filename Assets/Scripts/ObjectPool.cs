@@ -34,12 +34,10 @@ public class ObjectPool : MonoBehaviour
         objectPool = new Queue<GameObject>();
         for (int i = 0; i < size; i++)
         {
-            GameObject poolItem = Instantiate(poolItemPrefab);
-            poolItem.transform.parent = transform;
-            poolItem.SetActive(false);
-            objectPool.Enqueue(poolItem);
+            InstantiatePoolItem();
         }
     }
+
 
     public GameObject GetObjectFromPool()
     {
@@ -63,5 +61,11 @@ public class ObjectPool : MonoBehaviour
         objectPool.Enqueue(gameObject);    
     }
 
-
+    private void InstantiatePoolItem()
+    {
+        GameObject poolItem = Instantiate(poolItemPrefab);
+        poolItem.transform.parent = transform;
+        poolItem.SetActive(false);
+        objectPool.Enqueue(poolItem);
+    }
 }
