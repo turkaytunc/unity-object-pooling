@@ -17,7 +17,7 @@ public class ObjectPool : MonoBehaviour
         {
             objectPoolInstance = this;
         }
-        else if(objectPoolInstance != this)
+        else if (objectPoolInstance != this)
         {
             Debug.Log("More than one pool instance");
         }
@@ -45,12 +45,19 @@ public class ObjectPool : MonoBehaviour
         return poolItem;
     }
 
-    public GameObject SetObjectTransform(GameObject go, Vector3 position, Quaternion rotation)
+    public GameObject SetObjectTransform(GameObject gameObject, Vector3 position, Quaternion rotation)
     {
-        go.transform.position = position;
-        go.transform.rotation = rotation;
+        gameObject.transform.position = position;
+        gameObject.transform.rotation = rotation;
 
-        return go;
+        return gameObject;
     }
+
+    public void ReturnObjectToPool(GameObject gameObject)
+    {
+        gameObject.SetActive(false);
+        objectPool.Enqueue(gameObject);    
+    }
+
 
 }
