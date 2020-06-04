@@ -8,12 +8,14 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject shootingPoint;
 
+    [SerializeField] private ObjectPool bulletPool;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(bullet, shootingPoint.transform.position, Quaternion.identity);
-        }
-        
+            bullet = bulletPool.GetObjectFromPool();
+            bulletPool.SetObjectTransform(bullet, shootingPoint.transform.position, Quaternion.identity);
+        } 
     }
 }

@@ -5,18 +5,16 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
 
-    private static ObjectPool objectPoolInstance;
+    public static ObjectPool objectPoolInstance;
 
     private Queue<GameObject> objectPool;
-    [SerializeField] private int poolSize = 10;
+    [SerializeField] private int poolSize = 5;
     [SerializeField] private GameObject poolItemPrefab;
 
     private void Awake()
     {
         Singleton();
-
         InitPool(poolSize);
-
     }
 
     private void Singleton()
@@ -37,6 +35,7 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             GameObject poolItem = Instantiate(poolItemPrefab);
+            poolItem.transform.parent = transform;
             poolItem.SetActive(false);
             objectPool.Enqueue(poolItem);
         }
