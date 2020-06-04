@@ -7,6 +7,9 @@ public class ObjectPool : MonoBehaviour
 
     private static ObjectPool objectPoolInstance;
 
+    private Queue<GameObject> objectPool;
+    [SerializeField] private int poolSize = 10;
+    [SerializeField] private GameObject poolItemPrefab;
 
     private void Awake()
     {
@@ -19,6 +22,19 @@ public class ObjectPool : MonoBehaviour
             Debug.Log("More than one pool instance");
         }
 
+        InitPool(poolSize);
+
+    }
+
+    private void InitPool(int size)
+    {
+        objectPool = new Queue<GameObject>();
+        for (int i = 0; i < size; i++)
+        {
+            GameObject poolItem = Instantiate(poolItemPrefab);
+            poolItem.SetActive(false);
+            objectPool.Enqueue(poolItem);
+        }
     }
 
 
