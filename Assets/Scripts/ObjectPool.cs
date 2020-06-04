@@ -13,6 +13,14 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
+        Singleton();
+
+        InitPool(poolSize);
+
+    }
+
+    private void Singleton()
+    {
         if (objectPoolInstance == null)
         {
             objectPoolInstance = this;
@@ -21,9 +29,6 @@ public class ObjectPool : MonoBehaviour
         {
             Debug.Log("More than one pool instance");
         }
-
-        InitPool(poolSize);
-
     }
 
     private void InitPool(int size)
