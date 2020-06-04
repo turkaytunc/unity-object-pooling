@@ -45,7 +45,12 @@ public class ObjectPool : MonoBehaviour
         return poolItem;
     }
 
+    public GameObject SetObjectTransform(GameObject go, Vector3 position, Quaternion rotation)
+    {
+        go.transform.position = position;
+        go.transform.rotation = rotation;
 
-
+        return go;
+    }
 
 }
